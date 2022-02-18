@@ -32,6 +32,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "anyhow"
+version = "1.0.53"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "94a45b455c14666b85fc40a019e8ab9eb75e3a124e05494f5397122bc9eb06e0"
+
+[[package]]
 name = "arrayref"
 version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1009,6 +1015,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "itertools"
+version = "0.10.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a9a9d19fa1e79b6215ff29b9d6880b706147f16e9b1dbb1e4e5947b5b02bc5e3"
+dependencies = [
+ "either",
+]
+
+[[package]]
 name = "itoa"
 version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1102,7 +1117,7 @@ dependencies = [
 [[package]]
 name = "near-account-id"
 version = "0.0.0"
-source = "git+https://github.com/near/nearcore?rev=bd8a2de708b0350046eb16ce398a7ec896a94f0c#bd8a2de708b0350046eb16ce398a7ec896a94f0c"
+source = "git+https://github.com/near/nearcore?rev=ea731e37efd2db44313a2769ad5b0e12ae9c3e34#ea731e37efd2db44313a2769ad5b0e12ae9c3e34"
 dependencies = [
  "borsh",
  "serde",
@@ -1111,7 +1126,7 @@ dependencies = [
 [[package]]
 name = "near-crypto"
 version = "0.0.0"
-source = "git+https://github.com/near/nearcore?rev=bd8a2de708b0350046eb16ce398a7ec896a94f0c#bd8a2de708b0350046eb16ce398a7ec896a94f0c"
+source = "git+https://github.com/near/nearcore?rev=ea731e37efd2db44313a2769ad5b0e12ae9c3e34#ea731e37efd2db44313a2769ad5b0e12ae9c3e34"
 dependencies = [
  "arrayref",
  "blake2",
@@ -1137,7 +1152,7 @@ dependencies = [
 [[package]]
 name = "near-indexer-primitives"
 version = "0.0.0"
-source = "git+https://github.com/near/nearcore?rev=bd8a2de708b0350046eb16ce398a7ec896a94f0c#bd8a2de708b0350046eb16ce398a7ec896a94f0c"
+source = "git+https://github.com/near/nearcore?rev=ea731e37efd2db44313a2769ad5b0e12ae9c3e34#ea731e37efd2db44313a2769ad5b0e12ae9c3e34"
 dependencies = [
  "near-primitives",
  "serde",
@@ -1147,12 +1162,15 @@ dependencies = [
 [[package]]
 name = "near-lake-framework"
 version = "0.1.0"
-source = "git+https://github.com/near/near-lake-framework#849e30f703755a4f701d0d0a16df095c7a615c04"
+source = "git+https://github.com/near/near-lake-framework?rev=e27eecbb20fd26b2efeaa21ebb998db47521a73e#e27eecbb20fd26b2efeaa21ebb998db47521a73e"
 dependencies = [
+ "anyhow",
  "aws-config",
  "aws-endpoint",
  "aws-sdk-s3",
  "aws-smithy-http",
+ "futures",
+ "itertools 0.10.3",
  "near-indexer-primitives",
  "serde",
  "serde_json",
@@ -1167,7 +1185,7 @@ name = "near-lake-raw-printer"
 version = "0.1.0"
 dependencies = [
  "futures",
- "itertools",
+ "itertools 0.9.0",
  "near-lake-framework",
  "serde",
  "serde_json",
@@ -1180,7 +1198,7 @@ dependencies = [
 [[package]]
 name = "near-primitives"
 version = "0.0.0"
-source = "git+https://github.com/near/nearcore?rev=bd8a2de708b0350046eb16ce398a7ec896a94f0c#bd8a2de708b0350046eb16ce398a7ec896a94f0c"
+source = "git+https://github.com/near/nearcore?rev=ea731e37efd2db44313a2769ad5b0e12ae9c3e34#ea731e37efd2db44313a2769ad5b0e12ae9c3e34"
 dependencies = [
  "borsh",
  "byteorder",
@@ -1205,7 +1223,7 @@ dependencies = [
 [[package]]
 name = "near-primitives-core"
 version = "0.0.0"
-source = "git+https://github.com/near/nearcore?rev=bd8a2de708b0350046eb16ce398a7ec896a94f0c#bd8a2de708b0350046eb16ce398a7ec896a94f0c"
+source = "git+https://github.com/near/nearcore?rev=ea731e37efd2db44313a2769ad5b0e12ae9c3e34#ea731e37efd2db44313a2769ad5b0e12ae9c3e34"
 dependencies = [
  "base64 0.11.0",
  "borsh",
@@ -1220,7 +1238,7 @@ dependencies = [
 [[package]]
 name = "near-rpc-error-core"
 version = "0.0.0"
-source = "git+https://github.com/near/nearcore?rev=bd8a2de708b0350046eb16ce398a7ec896a94f0c#bd8a2de708b0350046eb16ce398a7ec896a94f0c"
+source = "git+https://github.com/near/nearcore?rev=ea731e37efd2db44313a2769ad5b0e12ae9c3e34#ea731e37efd2db44313a2769ad5b0e12ae9c3e34"
 dependencies = [
  "quote",
  "serde",
@@ -1230,7 +1248,7 @@ dependencies = [
 [[package]]
 name = "near-rpc-error-macro"
 version = "0.0.0"
-source = "git+https://github.com/near/nearcore?rev=bd8a2de708b0350046eb16ce398a7ec896a94f0c#bd8a2de708b0350046eb16ce398a7ec896a94f0c"
+source = "git+https://github.com/near/nearcore?rev=ea731e37efd2db44313a2769ad5b0e12ae9c3e34#ea731e37efd2db44313a2769ad5b0e12ae9c3e34"
 dependencies = [
  "near-rpc-error-core",
  "serde",
@@ -1240,7 +1258,7 @@ dependencies = [
 [[package]]
 name = "near-vm-errors"
 version = "0.0.0"
-source = "git+https://github.com/near/nearcore?rev=bd8a2de708b0350046eb16ce398a7ec896a94f0c#bd8a2de708b0350046eb16ce398a7ec896a94f0c"
+source = "git+https://github.com/near/nearcore?rev=ea731e37efd2db44313a2769ad5b0e12ae9c3e34#ea731e37efd2db44313a2769ad5b0e12ae9c3e34"
 dependencies = [
  "borsh",
  "near-account-id",
