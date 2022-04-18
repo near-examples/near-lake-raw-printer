@@ -14,5 +14,4 @@ tracing-subscriber = "0.2.4"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1.0.55"
 
-near-lake-framework = { git = "https://github.com/near/near-lake-framework", rev = "34f77424051bf032bc5f1d21565ef6e021937b71" }
-# near-lake-framework = { path = "../near-lake-framework" }
+near-lake-framework = { git = "https://github.com/near/near-lake-framework", rev = "b14d37f71c5fcfe184d3084b1fe2d14b8f50780f" }

@@ -1162,7 +1162,7 @@ dependencies = [
 [[package]]
 name = "near-lake-framework"
 version = "0.1.0"
-source = "git+https://github.com/near/near-lake-framework?rev=34f77424051bf032bc5f1d21565ef6e021937b71#34f77424051bf032bc5f1d21565ef6e021937b71"
+source = "git+https://github.com/near/near-lake-framework?rev=b14d37f71c5fcfe184d3084b1fe2d14b8f50780f#b14d37f71c5fcfe184d3084b1fe2d14b8f50780f"
 dependencies = [
  "anyhow",
  "aws-config",
@@ -1170,6 +1170,7 @@ dependencies = [
  "aws-sdk-s3",
  "aws-smithy-http",
  "futures",
+ "http",
  "itertools 0.10.3",
  "near-indexer-primitives",
  "serde",

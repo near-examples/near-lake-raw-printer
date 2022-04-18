@@ -8,14 +8,15 @@ async fn main() -> Result<(), tokio::io::Error> {
     init_tracing();
 
     let config = LakeConfig {
-        s3_bucket_name: "near-lake-data-mainnet".to_string(),
+        s3_endpoint: None,
+        s3_bucket_name: "near-lake-data-testnet".to_string(),
         s3_region_name: "eu-central-1".to_string(),
-        start_block_height: 59893701, // want to start from the freshest
+        start_block_height: 82800242, // want to start from the freshest
     };
     let stream = near_lake_framework::streamer(config);
 
     let mut handlers = tokio_stream::wrappers::ReceiverStream::new(stream)
-        .map(|streamer_message| handle_streamer_message(streamer_message))
+        .map(handle_streamer_message)
         .buffer_unordered(1usize);
 
     while let Some(_handle_message) = handlers.next().await {}
@@ -26,7 +27,6 @@ async fn main() -> Result<(), tokio::io::Error> {
 async fn handle_streamer_message(
     streamer_message: near_lake_framework::near_indexer_primitives::StreamerMessage,
 ) {
-    // eprintln!("{:#?}", &streamer_message);
     eprintln!(
         "{} / shards {}",
         streamer_message.block.header.height,
@@ -35,7 +35,7 @@ async fn handle_streamer_message(
 }
 
 fn init_tracing() {
-    let mut env_filter = EnvFilter::new("near_lake_framework=info");
+    let mut env_filter = EnvFilter::new("near_lake_framework=debug");
 
     if let Ok(rust_log) = std::env::var("RUST_LOG") {
         if !rust_log.is_empty() {
