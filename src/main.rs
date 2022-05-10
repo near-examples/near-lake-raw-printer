@@ -1,18 +1,18 @@
 use futures::StreamExt;
 use tracing_subscriber::EnvFilter;
 
-use near_lake_framework::LakeConfig;
+use near_lake_framework::LakeConfigBuilder;
 
 #[tokio::main]
 async fn main() -> Result<(), tokio::io::Error> {
     init_tracing();
 
-    let config = LakeConfig {
-        s3_endpoint: None,
-        s3_bucket_name: "near-lake-data-testnet".to_string(),
-        s3_region_name: "eu-central-1".to_string(),
-        start_block_height: 82800242, // want to start from the freshest
-    };
+    let config = LakeConfigBuilder::default()
+        .mainnet()
+        .start_block_height(63804051)
+        .build()
+        .expect("Failed to build LakeConfig");
+
     let stream = near_lake_framework::streamer(config);
 
     let mut handlers = tokio_stream::wrappers::ReceiverStream::new(stream)
@@ -35,7 +35,7 @@ async fn handle_streamer_message(
 }
 
 fn init_tracing() {
-    let mut env_filter = EnvFilter::new("near_lake_framework=debug");
+    let mut env_filter = EnvFilter::new("near_lake_framework=info");
 
     if let Ok(rust_log) = std::env::var("RUST_LOG") {
         if !rust_log.is_empty() {
