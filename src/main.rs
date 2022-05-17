@@ -9,11 +9,11 @@ async fn main() -> Result<(), tokio::io::Error> {
 
     let config = LakeConfigBuilder::default()
         .mainnet()
-        .start_block_height(63804051)
+        .start_block_height(65772033)
         .build()
         .expect("Failed to build LakeConfig");
 
-    let stream = near_lake_framework::streamer(config);
+    let (_, stream) = near_lake_framework::streamer(config);
 
     let mut handlers = tokio_stream::wrappers::ReceiverStream::new(stream)
         .map(handle_streamer_message)
